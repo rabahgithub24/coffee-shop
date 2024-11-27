@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Website</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Miniver&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    :root {
+      --white-color: #fff;
+      --dark-color: #252525;
+      --primary-color: #3b141c;
+      --secondary-color: #f3961c;
+      --light-pink-color: #faf4f5;
+      --medium-gray-color: #ccc;
+      --font-size-s: 0.9rem;
+      --font-size-n: 1rem;
+      --font-size-m: 1.12rem;
+      --font-size-l: 1.5rem;
+      --font-size-xl: 2rem;
+      --font-size-xxl: 2.3rem;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --border-radius-s: 8px;
+      --border-radius-m: 30px;
+      --border-radius-circle: 50%;
+      --site-max-width: 1300px;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    .section-content {
+      margin: 0 auto;
+      padding: 0 20px;
+      max-width: var(--site-max-width);
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      z-index: 5;
+      background: var(--primary-color);
+    }
+
+    header .navbar {
+      display: flex;
+      padding: 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar .nav-logo .logo-text {
+      color: var(--white-color);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      z-index: 6;
+    }
+
+    .dropbtn {
+      padding: 10px 18px;
+      color: var(--white-color);
+      font-size: var(--font-size-m);
+      background: var(--secondary-color);
+      border-radius: var(--border-radius-m);
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: var(--white-color);
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      border-radius: var(--border-radius-s);
+    }
+
+    .dropdown-content a {
+      color: var(--dark-color);
+      padding: 12px 16px;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--light-pink-color);
+    }
+
+    .show {
+      display: block;
+    }
+
+    .navbar .nav-menu {
+      display: flex;
+      gap: 10px;
+    }
+
+    .navbar .nav-menu .nav-link {
+      display: inline-block;
+      padding: 10px 18px;
+      color: var(--white-color);
+      font-size: var(--font-size-m);
+      background: var(--secondary-color);
+      border-radius: var(--border-radius-m);
+      transition: all 0.3s ease;
+    }
+
+    .navbar .nav-menu .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    .hero-section {
+      min-height: 100vh;
+      background: var(--primary-color);
+    }
+
+    .hero-section .section-content {
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+      color: var(--white-color);
+      justify-content: space-between;
+    }
+
+    .hero-section .hero-details .title {
+      font-size: var(--font-size-xxl);
+      color: var(--secondary-color);
+      font-family: "Miniver", sans-serif;
+    }
+
+    .hero-section .hero-details .subtitle {
+      margin-top: 8px;
+      max-width: 70%;
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .hero-section .hero-details .description {
+      max-width: 70%;
+      margin: 24px 0 40px;
+      font-size: var(--font-size-m);
+    }
+
+    .hero-section .hero-details .buttons {
+      display: flex;
+      gap: 23px;
+    }
+
+    .hero-section .hero-details .button {
+      padding: 10px 26px;
+      border: 2px solid transparent;
+      color: var(--primary-color);
+      border-radius: var(--border-radius-m);
+      background: var(--secondary-color);
+      font-weight: var(--font-weight-medium);
+      transition: 0.3s ease;
+    }
+
+    .hero-section .hero-details .button:hover {
+      color: var(--white-color);
+      border-color: var(--white-color);
+      background: transparent;
+    }
+
+    .hero-section .hero-image-wrapper {
+      max-width: 500px;
+      margin-right: 30px;
+    }
+
+    .about-section {
+      padding: 100px 0;
+      background: var(--light-pink-color);
+      min-height: 100vh;
+      display: none;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      max-width: var(--site-max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .about-image {
+      flex: 1;
+      max-width: 500px;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: var(--border-radius-s);
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h2 {
+      color: var(--primary-color);
+      font-size: var(--font-size-xl);
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: var(--dark-color);
+      font-size: var(--font-size-m);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav class="navbar section content">
+    <a href="#" class="nav-logo">
+      <h2 class="logo-text">☕ Coffee</h2>
+    </a>
+    <div class="dropdown">
+      <button onclick="toggleMenu()" class="dropbtn">Coffee Menu ▼</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#" onclick="orderCoffee('Hot Coffee', 3.99)">Hot Coffee - $3.99</a>
+        <a href="#" onclick="orderCoffee('Iced Coffee', 4.49)">Iced Coffee - $4.49</a>
+        <a href="#" onclick="orderCoffee('Espresso', 2.99)">Espresso - $2.99</a>
+        <a href="#" onclick="orderCoffee('Latte', 4.99)">Latte - $4.99</a>
+      </div>
+    </div>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="#" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link about-btn">About</a>
+      </li>
+      <li class="nav-item">
+        <a href="menu.html" class="nav-link">Menu</a>
+
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Testimonials</a>
+      </li>
+      <li class="nav-item">
+        <a href="Gallery.html" class="nav-link">Gallery</a>
+      </li>
+      <li class="nav-item">
+        <a href="contact.html" class="nav-link" >Contact</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="hero-section">
+    <div class="section-content">
+      <div class="hero-details">
+        <h2 class="title">Best Coffee</h2>
+        <h3 class="subtitle">Make your day great with our special coffee!</h3>
+        <p class="description">Welcome to our coffee paradise, where every bean tells a story and every cup sparks
+          joy.</p>
+        <div class="buttons">
+        < <a href="#" class="button order-now" onclick="orderNow()">Order Now</a>
+          <a href="#" class="button contact-us" onclick="contactUs()">Contact Us</a>
+        </div>
+      </div>
+      <div class="hero-image-wrapper">
+        <img src="img/coffee-image.png" alt="Coffee cup" class="hero-image">
+      </div>
+    </div>
+  </section>
+
+  <section id="about-section" class="about-section">
+    <div class="about-content">
+      <div class="about-image">
+        <img src="img/about-image.png" alt="Our Coffee Shop">
+      </div>
+      <div class="about-text">
+        <h2>About Our Coffee</h2>
+        <p>Welcome to our cozy corner of coffee heaven! Established in 2010, we've been serving premium, ethically
+          sourced coffee to our community. Our master baristas carefully select and roast each bean to perfection,
+          ensuring every cup tells a story of quality and passion.</p>
+        <p>Nestled in the heart of Miami, Florida, our coffee shop brings warmth and character to the vibrant Brickell
+          neighborhood. With our outdoor seating area surrounded by lush tropical plants and the gentle Miami breeze,
+          we've created the perfect spot for both locals and visitors to enjoy their daily coffee ritual. Our prime
+          location, just steps away from Brickell City Centre, makes us the ideal destination for morning commuters,
+          business meetings, or casual afternoon breaks.</p>
+      </div>
+    </div>
+  </section>
+  <!-- About Section End (Around line 150-180) -->
+  </section>
+
+
+</main>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  function orderCoffee(type, price) {
+    alert(`You selected ${type} for $${price}. Your order is being processed.`);
+  }
+
+ // function contactUs() {
+   // alert("Contact form will open. Our team will contact you soon!");}
+
+
+  function orderNow() {
+    alert("Order form will open. Please select your items.");
+  }
+
+  document.querySelector('.about-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+    const aboutSection = document.getElementById('about-section');
+    if (aboutSection.style.display === 'none' || aboutSection.style.display === '') {
+      aboutSection.style.display = 'block';
+      document.documentElement.scrollTop = aboutSection.offsetTop;
+    } else {
+      aboutSection.style.display = 'none';
+    }
+  });
+
+  window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      for (var i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+</script>
+</body>
+</html>
+
